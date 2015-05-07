@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "soap-server": "*"
+    "soap": "*"
   },
   "engines": {
     "node": "0.12.2"

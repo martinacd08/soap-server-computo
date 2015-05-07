@@ -51,16 +51,37 @@ app.listen(app.get('port'), function() {
 });
 
 */
-
-var soap = require('soap-server');
-
-function MyTestService(){
-}
-MyTestService.prototype.test1 = function(myArg1, myArg2){
-    return myArg1 + myArg2;
-};
-
-var soapServer = new soap.SoapServer();
-var soapService = soapServer.addService('testService', new MyTestService());
-    
-soapServer.listen(1337, 'https://fathomless-shelf-3782.herokuapp.com');
+var myService = {
+      MyService: {
+          MyPort: {
+              MyFunction: function(args) {
+                  return {
+                      name: args.name
+                  };
+              },
+ 
+              // This is how to define an asynchronous function. 
+              MyAsyncFunction: function(args, callback) {
+                  // do some work 
+                  callback({
+                      name: args.name
+                  })
+              },
+ 
+              // This is how to receive incoming headers 
+              HeadersAwareFunction: function(args, cb, headers) {
+                  return {
+                      name: headers.Token
+                  };
+              }
+          }
+      }
+  }
+ 
+  var xml = require('fs').readFileSync('myservice.wsdl', 'utf8'),
+      server = http.createServer(function(request,response) {
+          response.end("404: Not Found: "+request.url)
+      });
+ 
+  server.listen(8000);
+  soap.listen(server, '/wsdl', myService, xml);
