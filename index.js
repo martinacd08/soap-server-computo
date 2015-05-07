@@ -1,4 +1,4 @@
-
+/*
 var express = require('express'),
     app     = express(),
     mysql   = require('mysql'),
@@ -49,3 +49,18 @@ app.get('/', function(req,res){
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+*/
+
+var soap = require('soap-server');
+
+function MyTestService(){
+}
+MyTestService.prototype.test1 = function(myArg1, myArg2){
+    return myArg1 + myArg2;
+};
+
+var soapServer = new soap.SoapServer();
+var soapService = soapServer.addService('testService', new MyTestService());
+    
+soapServer.listen(1337, '127.0.0.1');
