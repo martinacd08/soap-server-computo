@@ -1,4 +1,4 @@
-/*
+
 var express = require('express'),
     app     = express(),
     mysql   = require('mysql'),
@@ -10,6 +10,7 @@ var express = require('express'),
 
     });
 	
+	var soap = require('./soap-server/server');
 	
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -50,38 +51,3 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-*/
-var myService = {
-      MyService: {
-          MyPort: {
-              MyFunction: function(args) {
-                  return {
-                      name: args.name
-                  };
-              },
- 
-              // This is how to define an asynchronous function. 
-              MyAsyncFunction: function(args, callback) {
-                  // do some work 
-                  callback({
-                      name: args.name
-                  })
-              },
- 
-              // This is how to receive incoming headers 
-              HeadersAwareFunction: function(args, cb, headers) {
-                  return {
-                      name: headers.Token
-                  };
-              }
-          }
-      }
-  }
- 
-  var xml = require('fs').readFileSync('myservice.wsdl', 'utf8'),
-      server = http.createServer(function(request,response) {
-          response.end("404: Not Found: "+request.url)
-      });
- 
-  server.listen(8000);
-  soap.listen(server, '/wsdl', myService, xml);

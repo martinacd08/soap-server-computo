@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "soap": "*"
+    "soap-server": "*","express":"*","mysql":"*"
   },
   "engines": {
     "node": "0.12.2"
