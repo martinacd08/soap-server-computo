@@ -47,5 +47,5 @@ var test4operation = soapService.getOperation('test4');
 test4operation.setInputType('myTestObjectInstance', MyTestObject);
 
 
-soapServer.listen(1337, '127.0.0.1');
+soapServer.listen(process.env.PORT || 5000);
 console.log('Server running at http://127.0.0.1:1337/');
