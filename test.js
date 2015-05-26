@@ -19,7 +19,7 @@ MyTestService.prototype.test1 = function(myArg1, myArg2){
 	return myArg1 + myArg2;
 };
 MyTestService.prototype.test2 = function(){
-	return 2002;
+	return '200';
 };
 MyTestService.prototype.test3 = function(strArg, intArg){
 	var ret = new MyObject();
