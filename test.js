@@ -34,8 +34,7 @@ MyTestService.prototype.test4 = function(myTestObjectInstance){
 var soapServer = new soap.SoapServer();
 var soapService = soapServer.addService('testService', new MyTestService());
 
-var test2operation = soapService.getOperation('test2');
-test2operation.setOutputType('number');
+
 
 
 var test3operation = soapService.getOperation('test3');
